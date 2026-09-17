@@ -2,8 +2,8 @@ import requests
 url = "http://localhost:11434/api/generate"
 payload = {
     # "model": "llama3.2:3b",
-    "model": "llama3.2:latest",
-    # "model": "exaone3.5:7.8b",
+    # "model": "llama3.2:latest",
+    "model": "exaone3.5:7.8b",
     "prompt": "로컬 LLM 기반 앱 개발을 배우는 이유를 3문장으로 설명해줘.",
     "stream": False,
 }

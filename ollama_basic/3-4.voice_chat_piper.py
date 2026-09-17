@@ -30,8 +30,7 @@
 # → 출력: paplay / aplay / pygame
 #
 # 설치:
-# sudo apt install -y libportaudio2 portaudio19-dev libasound2-dev \
-#   libpulse0 pulseaudio-utils libasound2-plugins alsa-utils
+# sudso apt install -y libportaudio2 portaudio19-dev libasound2-dev libpulse0 pulseaudio-utils libasound2-plugins alsa-utils
 # uv pip install ollama sounddevice scipy faster-whisper pygame piper-tts
 
 # WSL에서 마이크 인식시키기
@@ -67,7 +66,7 @@ if is_wsl():
 
 import ollama
 import sounddevice as sd
-from scipy.io.wavfile import write
+sfrom scipy.io.wavfile import write
 from faster_whisper import WhisperModel
 import pygame
 

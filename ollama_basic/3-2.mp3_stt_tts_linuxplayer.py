@@ -56,7 +56,7 @@ import pygame
 OLLAMA_MODEL = "exaone3.5:7.8b"
 # OLLAMA_MODEL = "llama3.2:3b"
 
-AUDIO_FILE = Path("./voice/voice1.mp3")
+AUDIO_FILE = Path("/home/sunub/python-lab/gg1th_local_llm_app/ollama_basic/voice/voice1.mp3")
 OUTPUT_TTS_FILE = Path("./voice/answer.mp3")
 
 WHISPER_MODEL_SIZE = "base"    # tiny, base, small, medium, large-v3
