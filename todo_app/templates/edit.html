@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<form data-id="{{ todo.id }}">
+    <textarea name="task" rows="5">{{ todo.task }}</textarea>
+    <label for="completed">Done?</label>
+    <input type="checkbox" name="completed" {% if todo.completed %} checked {% endif %}>
+    <button type="button" id="edit">Save</button>
+</form>
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    document.querySelector("button#edit").addEventListener("click", async () => {
+        const form = document.querySelector("form");
+        const formData = new FormData(form);
+        const id = form.dataset['id'];
+        const task = formData.get('task');
+        const isDone = formData.get('completed') === 'on' ? true : false;
+
+        const response = await fetch(`/todo/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                task,
+                completed: isDone
+            })
+        });
+
+        if (response.ok) {
+            window.location.href = "/";
+        } else {
+            alert("저장에 실패했습니다.");
+        }
+    });
+</script>
+{% endblock script %}

@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<form action="/todo" method="post">
+    <textarea name="task" rows="5" placeholder="Enter your task" id="task"></textarea>
+    <button type="submit" id="add_task">
+        Add
+    </button>
+</form>
+<br>
+
+{% for todo in todos %}
+<div class="task" data-todo-id="{{ todo.id }}">
+    {% if todo.completed %}
+    <strike>{{ todo.task }}</strike>
+    {% else %}
+    <div>{{ todo.task }}</div>
+    {% endif %}
+
+    {% if todo.completed %}
+    <span>완료</span>
+    {% else %}
+    <span>미완료</span>
+    {% endif %}
+    <div class="task-actions">
+        <a href="/edit/{{ todo.id }}" class="todo-btn">Edit</a>
+        <button type="button" class="todo-btn" data-delete-id="{{ todo.id }}">Delete</button>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
+
+{% block script %}
+<script>
+    document.querySelectorAll("[data-delete-id]").forEach((button) => {
+        button.addEventListener("click", async () => {
+            const todoId = button.dataset.deleteId;
+            const response = await fetch(`/todo/${todoId}`, { method: "DELETE" });
+            if (response.ok) {
+                button.closest(".task").remove();
+            } else {
+                alert("삭제에 실패했습니다.");
+            }
+        });
+    });
+</script>
+{% endblock script %}
